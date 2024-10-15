@@ -36,7 +36,7 @@ ENTRYPOINT ["java","-jar","/app/app.jar"]
 
 `build.gradle`
 
-```docker
+```gradle
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.4'
@@ -119,20 +119,20 @@ ECR 리프레시 하면 새로운 항목 생김
 
 - EKS 클러스터 생성
 
-```docker
+```bash
 eksctl create cluster --name ce09-cluster --version 1.30 --nodes=1 --node-type=t2.small --region ap-northeast-2
 ```
 
 - kubectl configure
 
-```docker
+```bash
 aws eks --region ap-northeast-2 update-kubeconfig --name ce09-cluster
 ```
 ![image](https://github.com/user-attachments/assets/80fa7c47-70a6-410d-a471-fab05fe5fb3a)
 
 - k8s.yaml 작성
 
-```docker
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -170,7 +170,7 @@ spec:
 
 - 적용 및 확인
 
-```docker
+```bash
 kubectl apply -f k8s.yaml
 
 kubectl get svc
